@@ -8,7 +8,12 @@
     <!-- boostrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
+
+    <!-- JS link -->
+    <script src="./assets/javascript/script.js"></script>
 </head>
 <body>
 <div class="container-fluid text-center text-white bg-dark p-2">
@@ -21,10 +26,20 @@
             <h5 class="mt-1">Search for a city:</h5>
 
             <div class="form-inine form-group">
-
-                <input type="text" class="form-control">
-                <button class="btn btn-primary">Search</button>
+                <input id="search-value" type="text" class="form-control">
+                <button id="search-btn" class="btn btn-primary">Search</button>
             </div>
+
+            <ul class="list-group cities">
+
+            </ul>
+        </div>
+
+        <div class="col-md-9">
+            <!-- today's weather -->
+            <div class="mt-3"></div>
+            <!-- forcast -->
+            <div class="mt-3"></div>
         </div>
     </div>
 
