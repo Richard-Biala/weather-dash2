@@ -30,24 +30,41 @@ $(document).ready(function(){
                 const wind = response.wind.speed;
                 const humidity = response.main.humidity;
                 const temperature = response.main.temp;
-                const image = `https://openweathermap.org/img/w/${response.weather[0].icon}.png`;
+                const img = `https://openweathermap.org/img/w/${response.weather[0].icon}.png`;
 
-                console.log(name, wind, humidity, temperature, image);
+                console.log(name, wind, humidity, temperature, img);
 
 
                 //create card title
-                const title = $("<h3>").addClass("card-title").text(`${name} (${new Date().toLocaleDateString()})`);
-
-
-                $("#today").append(title);
+                const titleEl = $("<h3>").addClass("card-title").text(`${name} (${new Date().toLocaleDateString()})`);
 
                 //create the card
-                const card = $("<div>").addClass("card");
+                const cardEl = $("<div>").addClass("card");
 
                 //create card body
-                const cardBody = $("<div>").addClass("card-body");
+                const cardBodyEl = $("<div>").addClass("card-body");
 
                 //data to insert into card
+                const windEl = $("<p>").addClass("card-text").text(`Wind Speed: ${wind} MPH`);
+                const humidEl = $("<p>").addClass("card-text").text(`Humidity: ${humidity}`);
+                const tempEl = $("<p>").addClass("card-text").text(`Tempertaure: ${temperature}`);
+                const imgEl = $("<img>").attr("src", img);
+
+                //combine data into card
+                titleEl.append(imgEl);
+
+                // append all data into card body section
+                cardBodyEl.append(titleEl, tempEl, humidEl, windEl);
+
+                //append card body onti the actual card element
+                cardEl.append(cardBodyEl);
+
+                // append onti the actual html page so we can see
+                $("#today").append(cardEl);
+                 
+
+
+                
 
         })
     }
