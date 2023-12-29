@@ -74,7 +74,39 @@ $(document).ready(function(){
 
     function getUVIndex(lat, lon){
 
-        console.log(lat, lon);
+        //call api to get UV index
+        $.ajax({
+            type: "GET",
+            url: `http://api.openweathermap.org/data/2.5/uvi?appid=53d2378036e10278637205320c39dd84&lat=${lat}&lon=${lon}`
+        }).then(function(response){
+
+            const uvValue = response.value;
+
+            const uvEl = $("<p>").text(`UV Index: `);
+            const btnEl = $("<span>").addClass("btn btn-sm").text(uvValue);
+
+            // change color based off value of UV
+            if(uvValue < 3){
+                btnEl.addClass("btn-success");
+            }
+
+            else if(uvValue < 7){
+                btnEl.addClass("btn-warning");
+            }
+            else{
+                btnEl.addClass("btn-danger");
+            }
+
+
+            // append the btnEl to card
+            uvEl.append(btnEl);
+
+
+            // append to card body
+            $("#today .card-body").append(uvEl);
+
+
+        })
     }
 
 })
