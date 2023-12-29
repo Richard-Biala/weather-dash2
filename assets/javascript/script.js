@@ -61,12 +61,20 @@ $(document).ready(function(){
 
                 // append onti the actual html page so we can see
                 $("#today").append(cardEl);
-                 
-
-
                 
+                //get lat
+                const latitude = response.coord.lat;
 
+                // get lon
+                const longitude = response.coord.lon;
+
+                getUVIndex(latitude, longitude);
         })
+    }
+
+    function getUVIndex(lat, lon){
+
+        console.log(lat, lon);
     }
 
 })
