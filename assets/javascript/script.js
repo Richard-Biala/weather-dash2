@@ -69,6 +69,7 @@ $(document).ready(function(){
                 const longitude = response.coord.lon;
 
                 getUVIndex(latitude, longitude);
+                getForecast(name);
         })
     }
 
@@ -106,6 +107,17 @@ $(document).ready(function(){
             $("#today .card-body").append(uvEl);
 
 
+        })
+    }
+
+    function getForecast(cityName){
+        $.ajax({
+            type: "GET",
+            url: `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=53d2378036e10278637205320c39dd84&cnt=5`
+        }).then(function(response){
+            console.log(response);
+
+            $("#forecast").html("<h4 class=\"mt-3\">5-Day Forecast: </h4>").append("<div class=\"row\">");
         })
     }
 
