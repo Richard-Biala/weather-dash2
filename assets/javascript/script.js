@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     //create an array of cities
-    const cities = ["sacramento", "New York"];
+    const cities = ["Sacramento", "New York"];
 
     //listen for on click for the search button
     $("#search-btn").on("click", function(){
@@ -9,8 +9,14 @@ $(document).ready(function(){
         //get search value
         const searchValue = $("#search-value").val().trim();
 
+        //push new button to array
+        cities.push(searchValue);
+
         // call search weather function
         searchWeather(searchValue);
+
+        //render new button
+        renderButtons();
     })
 
 
@@ -164,13 +170,17 @@ $(document).ready(function(){
         $(".cities").empty();
         for(let i = 0; i < cities.length; i++){
             //create list item
-            const listItem = $("<li>").addClass("current-city list-group-item list-group-item-action").text(cities[i]);
+            const listItem = $("<li>").addClass("current-city list-group-item list-group-item-action").attr("data-city", cities[i]).text(cities[i]);
             $(".cities").append(listItem);
         }
     }
 
     $(document).on("click", ".current-city", function(){
-        console.log("test");
+
+        //get city name from the one we click
+        const cityName = $(this).attr("data-city");
+
+        searchWeather(cityName);
     });
 
     //render on pageload
