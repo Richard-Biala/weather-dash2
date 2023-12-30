@@ -1,5 +1,8 @@
 $(document).ready(function(){
 
+    //create an array of cities
+    const cities = ["sacramento", "New York"];
+
     //listen for on click for the search button
     $("#search-btn").on("click", function(){
         
@@ -113,14 +116,14 @@ $(document).ready(function(){
     function getForecast(cityName){
         $.ajax({
             type: "GET",
-            url: `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=53d2378036e10278637205320c39dd84&cnt=5`
+            url: `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=53d2378036e10278637205320c39dd84`
         }).then(function(response){
 
                 console.log(response);
             $("#forecast").html("<h4 class=\"mt-3\">5-Day Forecast: </h4>").append("<div class=\"row\">");
 
             //loop over all forecast
-            for(var i = 0; i < response.list.length; i++){
+            for(var i = 0; i < response.list.length; i+=8){
                 
                  // create colomn
                  const colEl = $("<div>").addClass("col-md-2");
@@ -155,5 +158,22 @@ $(document).ready(function(){
             }
         })
     }
+
+    function renderButtons (){
+
+        $(".cities").empty();
+        for(let i = 0; i < cities.length; i++){
+            //create list item
+            const listItem = $("<li>").addClass("current-city list-group-item list-group-item-action").text(cities[i]);
+            $(".cities").append(listItem);
+        }
+    }
+
+    $(document).on("click", ".current-city", function(){
+        console.log("test");
+    });
+
+    //render on pageload
+    renderButtons();
 
 })
