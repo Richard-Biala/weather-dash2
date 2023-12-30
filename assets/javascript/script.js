@@ -46,7 +46,7 @@ $(document).ready(function(){
 
                 //data to insert into card
                 const windEl = $("<p>").addClass("card-text").text(`Wind Speed: ${wind} MPH`);
-                const humidEl = $("<p>").addClass("card-text").text(`Humidity: ${humidity}`);
+                const humidityEl = $("<p>").addClass("card-text").text(`Humidity: ${humidity}`);
                 const tempEl = $("<p>").addClass("card-text").text(`Tempertaure: ${temperature}`);
                 const imgEl = $("<img>").attr("src", img);
 
@@ -54,7 +54,7 @@ $(document).ready(function(){
                 titleEl.append(imgEl);
 
                 // append all data into card body section
-                cardBodyEl.append(titleEl, tempEl, humidEl, windEl);
+                cardBodyEl.append(titleEl, tempEl, humidityEl, windEl);
 
                 //append card body onti the actual card element
                 cardEl.append(cardBodyEl);
@@ -115,9 +115,44 @@ $(document).ready(function(){
             type: "GET",
             url: `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=53d2378036e10278637205320c39dd84&cnt=5`
         }).then(function(response){
-            console.log(response);
 
+                console.log(response);
             $("#forecast").html("<h4 class=\"mt-3\">5-Day Forecast: </h4>").append("<div class=\"row\">");
+
+            //loop over all forecast
+            for(var i = 0; i < response.list.length; i++){
+                
+                 // create colomn
+                 const colEl = $("<div>").addClass("col-md-2");
+
+                 // create card
+                 const cardEl = $("<div>").addClass("card bg-primary text-white");
+
+                 //create card body
+                 const cardBodyEl = $("<div>").addClass("card-body p-2");
+
+                 //exrtact data from current element that we are on
+                 const titleEl = $("<h5>").addClass("card-title").text(new Date(response.list[i].dt_txt).toLocaleDateString());
+
+                 const imgEl = $("<img>").attr("src", `https://openweathermap.org/img/w/${response.list[i].weather[0].icon}.png`);
+
+                 const tempEl = $("<p>").addClass("card-text").text(`Temp: ${response.list[i].main.temp_max}`);
+
+                 const humidityEl = $("<p>").addClass("card-text").text(`Humidity: ${response.list[i].main.humidity}`);
+
+
+
+                 // append all data to card element
+                 cardBodyEl.append(titleEl, imgEl, tempEl, humidityEl)
+                 cardEl.append(cardBodyEl);
+
+                 // once card if completed, append to our colomn
+                 colEl.append(cardEl);
+
+                 // append colomn to row
+                 $("#forecast .row").append(colEl);
+
+            }
         })
     }
 
