@@ -30,7 +30,7 @@ $(document).ready(function(){
         //quesry the API
         $.ajax({
             type: "GET",
-            url: `http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=53d2378036e10278637205320c39dd84`
+            url: `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=53d2378036e10278637205320c39dd84`
         }).then(function(response){
                 console.log(response);
 
@@ -87,7 +87,7 @@ $(document).ready(function(){
         //call api to get UV index
         $.ajax({
             type: "GET",
-            url: `http://api.openweathermap.org/data/2.5/uvi?appid=53d2378036e10278637205320c39dd84&lat=${lat}&lon=${lon}`
+            url: `https://api.openweathermap.org/data/2.5/uvi?appid=53d2378036e10278637205320c39dd84&lat=${lat}&lon=${lon}`
         }).then(function(response){
 
             const uvValue = response.value;
@@ -122,7 +122,7 @@ $(document).ready(function(){
     function getForecast(cityName){
         $.ajax({
             type: "GET",
-            url: `http://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=53d2378036e10278637205320c39dd84`
+            url: `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=53d2378036e10278637205320c39dd84`
         }).then(function(response){
 
                 console.log(response);
