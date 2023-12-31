@@ -55,8 +55,8 @@ $(document).ready(function(){
 
                 //data to insert into card
                 const windEl = $("<p>").addClass("card-text").text(`Wind Speed: ${wind} MPH`);
-                const humidityEl = $("<p>").addClass("card-text").text(`Humidity: ${humidity}`);
-                const tempEl = $("<p>").addClass("card-text").text(`Tempertaure: ${temperature}`);
+                const humidityEl = $("<p>").addClass("card-text").text(`Humidity: ${humidity}%`);
+                const tempEl = $("<p>").addClass("card-text").text(`Tempertaure: ${temperature} °F`);
                 const imgEl = $("<img>").attr("src", img);
 
                 //combine data into card
@@ -145,9 +145,9 @@ $(document).ready(function(){
 
                  const imgEl = $("<img>").attr("src", `https://openweathermap.org/img/w/${response.list[i].weather[0].icon}.png`);
 
-                 const tempEl = $("<p>").addClass("card-text").text(`Temp: ${response.list[i].main.temp_max}`);
+                 const tempEl = $("<p>").addClass("card-text").text(`Temp: ${response.list[i].main.temp_max} °F`);
 
-                 const humidityEl = $("<p>").addClass("card-text").text(`Humidity: ${response.list[i].main.humidity}`);
+                 const humidityEl = $("<p>").addClass("card-text").text(`Humidity: ${response.list[i].main.humidity}%`);
 
 
 
